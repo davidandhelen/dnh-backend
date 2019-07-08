@@ -1,0 +1,10 @@
+type User {
+  id: ID! @id
+  firstName: String! 
+  lastName: String!
+  email: String! @unique
+  phone: String! @unique
+  note: String
+  attending: Boolean!
+}
+

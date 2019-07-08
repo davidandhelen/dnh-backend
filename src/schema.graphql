@@ -1,0 +1,22 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    first: Int
+  ): [User]
+  user(id: ID!): User
+}
+
+type Mutation {
+  createUser(
+    firstName: String!
+    lastName: String!
+    email: String!
+    phone: String!
+    note: String
+    attending: Boolean
+  ): User!
+}
