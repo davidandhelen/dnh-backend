@@ -8,15 +8,24 @@ type Query {
     first: Int
   ): [User]
   user(id: ID!): User
+  me: User
 }
 
 type Mutation {
-  createUser(
+  signup(
     firstName: String!
     lastName: String!
+    password: String!
     email: String!
     phone: String!
     note: String
     attending: Boolean
-  ): User!
+  ): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  deleteUser(id: String!): User
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
 }

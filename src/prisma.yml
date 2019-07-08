@@ -1,6 +1,9 @@
 endpoint: https://us1.prisma.sh/david-ebdc6d/dnh-backend/dev
-datamodel: datamodel.graphql
+datamodel: ../prisma/datamodel.graphql
 
 generate:
   - generator: javascript-client
     output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma generate
