@@ -58,7 +58,13 @@ type User {
   email: String!
   phone: String!
   note: String
-  attending: Boolean!
+  rsvpStatus: Boolean!
+  addressLineOne: String!
+  addressLineTwo: String
+  country: String!
+  zipCode: String!
+  state: String!
+  city: String!
 }
 
 type UserConnection {
@@ -75,7 +81,13 @@ input UserCreateInput {
   email: String!
   phone: String!
   note: String
-  attending: Boolean!
+  rsvpStatus: Boolean!
+  addressLineOne: String!
+  addressLineTwo: String
+  country: String!
+  zipCode: String!
+  state: String!
+  city: String!
 }
 
 type UserEdge {
@@ -98,8 +110,20 @@ enum UserOrderByInput {
   phone_DESC
   note_ASC
   note_DESC
-  attending_ASC
-  attending_DESC
+  rsvpStatus_ASC
+  rsvpStatus_DESC
+  addressLineOne_ASC
+  addressLineOne_DESC
+  addressLineTwo_ASC
+  addressLineTwo_DESC
+  country_ASC
+  country_DESC
+  zipCode_ASC
+  zipCode_DESC
+  state_ASC
+  state_DESC
+  city_ASC
+  city_DESC
 }
 
 type UserPreviousValues {
@@ -110,7 +134,13 @@ type UserPreviousValues {
   email: String!
   phone: String!
   note: String
-  attending: Boolean!
+  rsvpStatus: Boolean!
+  addressLineOne: String!
+  addressLineTwo: String
+  country: String!
+  zipCode: String!
+  state: String!
+  city: String!
 }
 
 type UserSubscriptionPayload {
@@ -138,7 +168,13 @@ input UserUpdateInput {
   email: String
   phone: String
   note: String
-  attending: Boolean
+  rsvpStatus: Boolean
+  addressLineOne: String
+  addressLineTwo: String
+  country: String
+  zipCode: String
+  state: String
+  city: String
 }
 
 input UserUpdateManyMutationInput {
@@ -148,7 +184,13 @@ input UserUpdateManyMutationInput {
   email: String
   phone: String
   note: String
-  attending: Boolean
+  rsvpStatus: Boolean
+  addressLineOne: String
+  addressLineTwo: String
+  country: String
+  zipCode: String
+  state: String
+  city: String
 }
 
 input UserWhereInput {
@@ -250,8 +292,92 @@ input UserWhereInput {
   note_not_starts_with: String
   note_ends_with: String
   note_not_ends_with: String
-  attending: Boolean
-  attending_not: Boolean
+  rsvpStatus: Boolean
+  rsvpStatus_not: Boolean
+  addressLineOne: String
+  addressLineOne_not: String
+  addressLineOne_in: [String!]
+  addressLineOne_not_in: [String!]
+  addressLineOne_lt: String
+  addressLineOne_lte: String
+  addressLineOne_gt: String
+  addressLineOne_gte: String
+  addressLineOne_contains: String
+  addressLineOne_not_contains: String
+  addressLineOne_starts_with: String
+  addressLineOne_not_starts_with: String
+  addressLineOne_ends_with: String
+  addressLineOne_not_ends_with: String
+  addressLineTwo: String
+  addressLineTwo_not: String
+  addressLineTwo_in: [String!]
+  addressLineTwo_not_in: [String!]
+  addressLineTwo_lt: String
+  addressLineTwo_lte: String
+  addressLineTwo_gt: String
+  addressLineTwo_gte: String
+  addressLineTwo_contains: String
+  addressLineTwo_not_contains: String
+  addressLineTwo_starts_with: String
+  addressLineTwo_not_starts_with: String
+  addressLineTwo_ends_with: String
+  addressLineTwo_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  zipCode: String
+  zipCode_not: String
+  zipCode_in: [String!]
+  zipCode_not_in: [String!]
+  zipCode_lt: String
+  zipCode_lte: String
+  zipCode_gt: String
+  zipCode_gte: String
+  zipCode_contains: String
+  zipCode_not_contains: String
+  zipCode_starts_with: String
+  zipCode_not_starts_with: String
+  zipCode_ends_with: String
+  zipCode_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

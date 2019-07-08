@@ -116,8 +116,20 @@ export type UserOrderByInput =
   | "phone_DESC"
   | "note_ASC"
   | "note_DESC"
-  | "attending_ASC"
-  | "attending_DESC";
+  | "rsvpStatus_ASC"
+  | "rsvpStatus_DESC"
+  | "addressLineOne_ASC"
+  | "addressLineOne_DESC"
+  | "addressLineTwo_ASC"
+  | "addressLineTwo_DESC"
+  | "country_ASC"
+  | "country_DESC"
+  | "zipCode_ASC"
+  | "zipCode_DESC"
+  | "state_ASC"
+  | "state_DESC"
+  | "city_ASC"
+  | "city_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -226,8 +238,92 @@ export interface UserWhereInput {
   note_not_starts_with?: Maybe<String>;
   note_ends_with?: Maybe<String>;
   note_not_ends_with?: Maybe<String>;
-  attending?: Maybe<Boolean>;
-  attending_not?: Maybe<Boolean>;
+  rsvpStatus?: Maybe<Boolean>;
+  rsvpStatus_not?: Maybe<Boolean>;
+  addressLineOne?: Maybe<String>;
+  addressLineOne_not?: Maybe<String>;
+  addressLineOne_in?: Maybe<String[] | String>;
+  addressLineOne_not_in?: Maybe<String[] | String>;
+  addressLineOne_lt?: Maybe<String>;
+  addressLineOne_lte?: Maybe<String>;
+  addressLineOne_gt?: Maybe<String>;
+  addressLineOne_gte?: Maybe<String>;
+  addressLineOne_contains?: Maybe<String>;
+  addressLineOne_not_contains?: Maybe<String>;
+  addressLineOne_starts_with?: Maybe<String>;
+  addressLineOne_not_starts_with?: Maybe<String>;
+  addressLineOne_ends_with?: Maybe<String>;
+  addressLineOne_not_ends_with?: Maybe<String>;
+  addressLineTwo?: Maybe<String>;
+  addressLineTwo_not?: Maybe<String>;
+  addressLineTwo_in?: Maybe<String[] | String>;
+  addressLineTwo_not_in?: Maybe<String[] | String>;
+  addressLineTwo_lt?: Maybe<String>;
+  addressLineTwo_lte?: Maybe<String>;
+  addressLineTwo_gt?: Maybe<String>;
+  addressLineTwo_gte?: Maybe<String>;
+  addressLineTwo_contains?: Maybe<String>;
+  addressLineTwo_not_contains?: Maybe<String>;
+  addressLineTwo_starts_with?: Maybe<String>;
+  addressLineTwo_not_starts_with?: Maybe<String>;
+  addressLineTwo_ends_with?: Maybe<String>;
+  addressLineTwo_not_ends_with?: Maybe<String>;
+  country?: Maybe<String>;
+  country_not?: Maybe<String>;
+  country_in?: Maybe<String[] | String>;
+  country_not_in?: Maybe<String[] | String>;
+  country_lt?: Maybe<String>;
+  country_lte?: Maybe<String>;
+  country_gt?: Maybe<String>;
+  country_gte?: Maybe<String>;
+  country_contains?: Maybe<String>;
+  country_not_contains?: Maybe<String>;
+  country_starts_with?: Maybe<String>;
+  country_not_starts_with?: Maybe<String>;
+  country_ends_with?: Maybe<String>;
+  country_not_ends_with?: Maybe<String>;
+  zipCode?: Maybe<String>;
+  zipCode_not?: Maybe<String>;
+  zipCode_in?: Maybe<String[] | String>;
+  zipCode_not_in?: Maybe<String[] | String>;
+  zipCode_lt?: Maybe<String>;
+  zipCode_lte?: Maybe<String>;
+  zipCode_gt?: Maybe<String>;
+  zipCode_gte?: Maybe<String>;
+  zipCode_contains?: Maybe<String>;
+  zipCode_not_contains?: Maybe<String>;
+  zipCode_starts_with?: Maybe<String>;
+  zipCode_not_starts_with?: Maybe<String>;
+  zipCode_ends_with?: Maybe<String>;
+  zipCode_not_ends_with?: Maybe<String>;
+  state?: Maybe<String>;
+  state_not?: Maybe<String>;
+  state_in?: Maybe<String[] | String>;
+  state_not_in?: Maybe<String[] | String>;
+  state_lt?: Maybe<String>;
+  state_lte?: Maybe<String>;
+  state_gt?: Maybe<String>;
+  state_gte?: Maybe<String>;
+  state_contains?: Maybe<String>;
+  state_not_contains?: Maybe<String>;
+  state_starts_with?: Maybe<String>;
+  state_not_starts_with?: Maybe<String>;
+  state_ends_with?: Maybe<String>;
+  state_not_ends_with?: Maybe<String>;
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -241,7 +337,13 @@ export interface UserCreateInput {
   email: String;
   phone: String;
   note?: Maybe<String>;
-  attending: Boolean;
+  rsvpStatus: Boolean;
+  addressLineOne: String;
+  addressLineTwo?: Maybe<String>;
+  country: String;
+  zipCode: String;
+  state: String;
+  city: String;
 }
 
 export interface UserUpdateInput {
@@ -251,7 +353,13 @@ export interface UserUpdateInput {
   email?: Maybe<String>;
   phone?: Maybe<String>;
   note?: Maybe<String>;
-  attending?: Maybe<Boolean>;
+  rsvpStatus?: Maybe<Boolean>;
+  addressLineOne?: Maybe<String>;
+  addressLineTwo?: Maybe<String>;
+  country?: Maybe<String>;
+  zipCode?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -261,7 +369,13 @@ export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   phone?: Maybe<String>;
   note?: Maybe<String>;
-  attending?: Maybe<Boolean>;
+  rsvpStatus?: Maybe<Boolean>;
+  addressLineOne?: Maybe<String>;
+  addressLineTwo?: Maybe<String>;
+  country?: Maybe<String>;
+  zipCode?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -287,7 +401,13 @@ export interface User {
   email: String;
   phone: String;
   note?: String;
-  attending: Boolean;
+  rsvpStatus: Boolean;
+  addressLineOne: String;
+  addressLineTwo?: String;
+  country: String;
+  zipCode: String;
+  state: String;
+  city: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -298,7 +418,13 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   email: () => Promise<String>;
   phone: () => Promise<String>;
   note: () => Promise<String>;
-  attending: () => Promise<Boolean>;
+  rsvpStatus: () => Promise<Boolean>;
+  addressLineOne: () => Promise<String>;
+  addressLineTwo: () => Promise<String>;
+  country: () => Promise<String>;
+  zipCode: () => Promise<String>;
+  state: () => Promise<String>;
+  city: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -311,7 +437,13 @@ export interface UserSubscription
   email: () => Promise<AsyncIterator<String>>;
   phone: () => Promise<AsyncIterator<String>>;
   note: () => Promise<AsyncIterator<String>>;
-  attending: () => Promise<AsyncIterator<Boolean>>;
+  rsvpStatus: () => Promise<AsyncIterator<Boolean>>;
+  addressLineOne: () => Promise<AsyncIterator<String>>;
+  addressLineTwo: () => Promise<AsyncIterator<String>>;
+  country: () => Promise<AsyncIterator<String>>;
+  zipCode: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
@@ -324,7 +456,13 @@ export interface UserNullablePromise
   email: () => Promise<String>;
   phone: () => Promise<String>;
   note: () => Promise<String>;
-  attending: () => Promise<Boolean>;
+  rsvpStatus: () => Promise<Boolean>;
+  addressLineOne: () => Promise<String>;
+  addressLineTwo: () => Promise<String>;
+  country: () => Promise<String>;
+  zipCode: () => Promise<String>;
+  state: () => Promise<String>;
+  city: () => Promise<String>;
 }
 
 export interface UserConnection {
@@ -453,7 +591,13 @@ export interface UserPreviousValues {
   email: String;
   phone: String;
   note?: String;
-  attending: Boolean;
+  rsvpStatus: Boolean;
+  addressLineOne: String;
+  addressLineTwo?: String;
+  country: String;
+  zipCode: String;
+  state: String;
+  city: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -466,7 +610,13 @@ export interface UserPreviousValuesPromise
   email: () => Promise<String>;
   phone: () => Promise<String>;
   note: () => Promise<String>;
-  attending: () => Promise<Boolean>;
+  rsvpStatus: () => Promise<Boolean>;
+  addressLineOne: () => Promise<String>;
+  addressLineTwo: () => Promise<String>;
+  country: () => Promise<String>;
+  zipCode: () => Promise<String>;
+  state: () => Promise<String>;
+  city: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -479,7 +629,13 @@ export interface UserPreviousValuesSubscription
   email: () => Promise<AsyncIterator<String>>;
   phone: () => Promise<AsyncIterator<String>>;
   note: () => Promise<AsyncIterator<String>>;
-  attending: () => Promise<AsyncIterator<Boolean>>;
+  rsvpStatus: () => Promise<AsyncIterator<Boolean>>;
+  addressLineOne: () => Promise<AsyncIterator<String>>;
+  addressLineTwo: () => Promise<AsyncIterator<String>>;
+  country: () => Promise<AsyncIterator<String>>;
+  zipCode: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
 }
 
 /*

@@ -33,11 +33,45 @@ const UserMutations = {
     };
   },
 
-
   async deleteUser(parent, args, ctx, info) {
     const where = { id: args.id };
     const user = await ctx.prisma.query.user({ where }, `{ id }`);
+    if (!user) {
+      throw new Error('Invalid password');
+    }
+
     return ctx.prisma.mutation.deleteUser({ where }, info);
+  },
+
+  async updateUser(parent, args, ctx, info) {
+    const password = await bcrypt.hash(args.password, 10);
+    const where = { id: args.id };
+
+    //if patient doesn't exit, throw error
+    if (!user) {
+      throw new Error('Invalid password');
+    }
+
+    return ctx.db.mutation.updateUser(
+      {
+        where,
+        data: {
+          firstName: args.firstName,
+          lastName: args.lastName,
+          password,
+          phone: args.phone,
+          note: args.note ? args.note : '',
+          rsvpStatus: args.rsvpStatus,
+          addressLineOne: args.addressLineOne,
+          addressLineTwo: args.addressLineTwo ? args.addressLineTwo : '',
+          country: args.country,
+          zipCode: args.zipCode,
+          state: args.state,
+          city: args.city
+        }
+      },
+      info
+    );
   }
 };
 
