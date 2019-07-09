@@ -5,12 +5,12 @@ const { resolvers } = require('./resolvers/index');
 const jwt = require('jsonwebtoken');
 
 const server = new GraphQLServer({
-  typeDefs: 'src/schema.graphql',
+  typeDefs: __dirname + '/schema.graphql',
   resolvers,
   context: req => ({
     ...req,
     prisma: new Prisma({
-      typeDefs: 'src/generated/prisma.graphql',
+      typeDefs: __dirname + '/generated/prisma.graphql',
       endpoint: 'https://us1.prisma.sh/david-ebdc6d/dnh-backend/dev'
     })
   })
