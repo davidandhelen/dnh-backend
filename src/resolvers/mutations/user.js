@@ -9,7 +9,24 @@ const UserMutations = {
     });
 
     return {
-      token: jwt.sign({ userId: user.id }, 'secret'),
+      token: jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: user.phone,
+          note: user.note,
+          rsvpStatus: user.rsvpStatus,
+          addressLineOne: user.addressLineOne,
+          addressLineTwo: user.addressLineTwo,
+          country: user.country,
+          zipCode: user.zipCode,
+          state: user.state,
+          city: user.city
+        },
+        'secret'
+      ),
       user
     };
   },
@@ -26,9 +43,27 @@ const UserMutations = {
     }
 
     return {
-      token: jwt.sign({ userId: user.id }, 'secret', {
-        algorithm: 'HS256'
-      }),
+      token: jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: user.phone,
+          note: user.note,
+          rsvpStatus: user.rsvpStatus,
+          addressLineOne: user.addressLineOne,
+          addressLineTwo: user.addressLineTwo,
+          country: user.country,
+          zipCode: user.zipCode,
+          state: user.state,
+          city: user.city
+        },
+        'secret',
+        {
+          algorithm: 'HS256'
+        }
+      ),
       user
     };
   },
