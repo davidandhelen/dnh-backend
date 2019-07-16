@@ -1,7 +1,7 @@
 {
   "name": "dnh-backend",
   "version": "1.0.0",
-  "author": "David Shin",
+  "author": "David Shin & Helen Cho",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
