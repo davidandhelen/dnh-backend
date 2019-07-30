@@ -12,18 +12,6 @@ const UserMutations = {
       token: jwt.sign(
         {
           id: user.id,
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phone: user.phone,
-          note: user.note,
-          rsvpStatus: user.rsvpStatus,
-          addressLineOne: user.addressLineOne,
-          addressLineTwo: user.addressLineTwo,
-          country: user.country,
-          zipCode: user.zipCode,
-          state: user.state,
-          city: user.city
         },
         'secret'
       ),
@@ -46,18 +34,6 @@ const UserMutations = {
       token: jwt.sign(
         {
           id: user.id,
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phone: user.phone,
-          note: user.note,
-          rsvpStatus: user.rsvpStatus,
-          addressLineOne: user.addressLineOne,
-          addressLineTwo: user.addressLineTwo,
-          country: user.country,
-          zipCode: user.zipCode,
-          state: user.state,
-          city: user.city
         },
         'secret',
         {
