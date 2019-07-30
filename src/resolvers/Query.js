@@ -4,6 +4,7 @@ const Query = {
   user: async ({ user: { id } }, args, ctx, info) => {
     return ctx.prisma.query.user({ where: { id } }, info);
   },
+  // This query is probably going to be used for the admin page (for D / H only)
   users: (_, args, ctx, info) => {
     return ctx.prisma.query.users({}, info);
   },
