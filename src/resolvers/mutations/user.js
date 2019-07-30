@@ -1,43 +1,43 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const UserMutations = {
   async signup(parent, args, ctx, info) {
-    const password = await bcrypt.hash(args.password, 10);
+    const phone = await bcrypt.hash(args.phone, 10);
     const user = await ctx.prisma.mutation.createUser({
-      data: { ...args, password }
+      data: { ...args, phone }
     });
 
     return {
       token: jwt.sign(
         {
-          id: user.id,
+          id: user.id
         },
-        'secret'
+        "secret"
       ),
       user
     };
   },
 
-  async login(parent, { email, password }, ctx, info) {
+  async login(parent, { email, phone }, ctx, info) {
     const user = await ctx.prisma.query.user({ where: { email } });
     if (!user) {
       throw new Error(`No such user found for email: ${email}`);
     }
 
-    const valid = await bcrypt.compare(password, user.password);
+    const valid = await bcrypt.compare(phone, user.phone);
     if (!valid) {
-      throw new Error('Invalid password');
+      throw new Error("Invalid phone");
     }
 
     return {
       token: jwt.sign(
         {
-          id: user.id,
+          id: user.id
         },
-        'secret',
+        "secret",
         {
-          algorithm: 'HS256'
+          algorithm: "HS256"
         }
       ),
       user
@@ -48,19 +48,19 @@ const UserMutations = {
     const where = { id: args.id };
     const user = await ctx.prisma.query.user({ where }, `{ id }`);
     if (!user) {
-      throw new Error('Invalid password');
+      throw new Error("Invalid phone");
     }
 
     return ctx.prisma.mutation.deleteUser({ where }, info);
   },
 
   async updateUser(parent, args, ctx, info) {
-    const password = await bcrypt.hash(args.password, 10);
+    const phone = await bcrypt.hash(args.phone, 10);
     const where = { id: args.id };
 
     //if patient doesn't exit, throw error
     if (!user) {
-      throw new Error('Invalid password');
+      throw new Error("Invalid phone");
     }
 
     return ctx.db.mutation.updateUser(
@@ -69,12 +69,11 @@ const UserMutations = {
         data: {
           firstName: args.firstName,
           lastName: args.lastName,
-          password,
-          phone: args.phone,
-          note: args.note ? args.note : '',
+          phone,
+          note: args.note ? args.note : "",
           rsvpStatus: args.rsvpStatus,
           addressLineOne: args.addressLineOne,
-          addressLineTwo: args.addressLineTwo ? args.addressLineTwo : '',
+          addressLineTwo: args.addressLineTwo ? args.addressLineTwo : "",
           country: args.country,
           zipCode: args.zipCode,
           state: args.state,
