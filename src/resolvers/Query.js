@@ -11,8 +11,8 @@ const Query = {
     const Authorization = ctx.request.get('Authorization');
     if (Authorization) {
       const token = Authorization.replace('Bearer ', '');
-      const { userId } = jwt.verify(token, 'secret');
-      const user = await ctx.prisma.query.user({ where: { id: userId } });
+      const { id } = jwt.verify(token, 'secret');
+      const user = await ctx.prisma.query.user({ where: { id } });
 
       return user;
     }

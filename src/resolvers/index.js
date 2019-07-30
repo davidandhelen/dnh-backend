@@ -5,11 +5,6 @@ const resolvers = {
   Query,
   Mutation: {
     ...UserMutations
-  },
-  Node: {
-    __resolveType() {
-      return null;
-    }
   }
 };
 

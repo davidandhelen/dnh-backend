@@ -1,4 +1,4 @@
-# import * from './generated/prisma.graphql'
+# import * from '../prisma/generated/prisma.graphql'
 
 type Query {
   users(
@@ -15,7 +15,6 @@ type Mutation {
   signup(
     firstName: String!
     lastName: String!
-    password: String!
     email: String!
     phone: String!
     note: String
@@ -30,7 +29,6 @@ type Mutation {
   updateUser(
     firstName: String!
     lastName: String!
-    password: String!
     phone: String!
     note: String
     rsvpStatus: Boolean!
@@ -41,7 +39,7 @@ type Mutation {
     state: String!
     city: String!
   ): AuthPayload
-  login(email: String!, password: String!): AuthPayload
+  login(email: String!, phone: String!): AuthPayload
   deleteUser(id: String!): User
 }
 
