@@ -1,11 +1,9 @@
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserMutations = {
   async createUser(parent, args, ctx, info) {
-    const phone = await bcrypt.hash(args.phone, 10);
     const user = await ctx.prisma.mutation.createUser({
-      data: { ...args, phone }
+      data: { ...args }
     });
 
     return {
@@ -21,13 +19,8 @@ const UserMutations = {
 
   async login(parent, { phone }, ctx, info) {
     const user = await ctx.prisma.query.user({ where: { phone } });
-    if (!user) {
-      throw new Error(`No such user found for email: ${email}`);
-    }
-
-    const valid = await bcrypt.compare(phone, user.phone);
-    if (!valid) {
-      throw new Error("Invalid phone");
+    if (!iser) {
+      throw new Error("User not found");
     }
 
     return {
@@ -55,7 +48,6 @@ const UserMutations = {
   },
 
   async updateUser(parent, args, ctx, info) {
-    const phone = await bcrypt.hash(args.phone, 10);
     const where = { id: args.id };
 
     //if patient doesn't exit, throw error
@@ -70,7 +62,7 @@ const UserMutations = {
           firstName: args.firstName,
           lastName: args.lastName,
           rsvpStatus: args.rsvpStatus,
-          phone,
+          phone: args.phone,
           guestType: 'invitee',
           note: args.note ? args.note : "",
           allowedPlusOnes: args.allowedPlusOnes ? args.allowedPlusOnes : null
