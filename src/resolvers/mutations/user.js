@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserMutations = {
-  async signup(parent, args, ctx, info) {
+  async createUser(parent, args, ctx, info) {
     const phone = await bcrypt.hash(args.phone, 10);
     const user = await ctx.prisma.mutation.createUser({
       data: { ...args, phone }
