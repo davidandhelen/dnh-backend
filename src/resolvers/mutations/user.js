@@ -1,11 +1,9 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 const UserMutations = {
   async createUser(parent, args, ctx, info) {
-    const phone = await bcrypt.hash(args.phone, 10);
     const user = await ctx.prisma.mutation.createUser({
-      data: { ...args, phone }
+      data: { ...args }
     });
 
     return {
@@ -13,7 +11,7 @@ const UserMutations = {
         {
           id: user.id
         },
-        "secret"
+        'secret'
       ),
       user
     };
@@ -22,12 +20,7 @@ const UserMutations = {
   async login(parent, { phone }, ctx, info) {
     const user = await ctx.prisma.query.user({ where: { phone } });
     if (!user) {
-      throw new Error(`No such user found for email: ${email}`);
-    }
-
-    const valid = await bcrypt.compare(phone, user.phone);
-    if (!valid) {
-      throw new Error("Invalid phone");
+      throw new Error('User not found');
     }
 
     return {
@@ -35,9 +28,9 @@ const UserMutations = {
         {
           id: user.id
         },
-        "secret",
+        'secret',
         {
-          algorithm: "HS256"
+          algorithm: 'HS256'
         }
       ),
       user
@@ -48,32 +41,32 @@ const UserMutations = {
     const where = { id: args.id };
     const user = await ctx.prisma.query.user({ where }, `{ id }`);
     if (!user) {
-      throw new Error("Invalid phone");
+      throw new Error('User not found');
     }
 
     return ctx.prisma.mutation.deleteUser({ where }, info);
   },
 
   async updateUser(parent, args, ctx, info) {
-    const phone = await bcrypt.hash(args.phone, 10);
     const where = { id: args.id };
-
-    //if patient doesn't exit, throw error
+    const user = await ctx.prisma.query.user({ where }, `{ id }`);
     if (!user) {
-      throw new Error("Invalid phone");
+      throw new Error('User not found');
     }
 
     return ctx.db.mutation.updateUser(
       {
         where,
         data: {
-          firstName: args.firstName,
-          lastName: args.lastName,
-          rsvpStatus: args.rsvpStatus,
-          phone,
-          guestType: 'invitee',
-          note: args.note ? args.note : "",
-          allowedPlusOnes: args.allowedPlusOnes ? args.allowedPlusOnes : null
+          firstName: args.firstName ? args.firstName : user.firstName,
+          lastName: args.lastName ? args.lastName : user.lastName,
+          rsvpStatus: args.rsvpStatus ? args.rsvpStatus : user.rsvpStatus,
+          phone: args.phone ? args.phone : user.phone,
+          guestType: args.guestType ? args.guestType : user.guestType,
+          note: args.note ? args.note : user.note,
+          allowedPlusOnes: args.allowedPlusOnes
+            ? args.allowedPlusOnes
+            : user.allowedPlusOnes
         }
       },
       info
