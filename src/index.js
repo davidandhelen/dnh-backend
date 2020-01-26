@@ -11,7 +11,7 @@ const server = new GraphQLServer({
     ...req,
     prisma: new Prisma({
       typeDefs: __dirname + "/../prisma/generated/prisma.graphql",
-      endpoint: "https://us1.prisma.sh/david-ebdc6d/dnh-backend/dev"
+      endpoint: process.env.PRISMA_ENDPOINT
     })
   })
 });
