@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
 const UserMutations = {
   async createUser(parent, args, ctx, info) {
@@ -11,7 +11,7 @@ const UserMutations = {
         {
           id: user.id
         },
-        "secret"
+        'secret'
       ),
       user
     };
@@ -19,8 +19,8 @@ const UserMutations = {
 
   async login(parent, { phone }, ctx, info) {
     const user = await ctx.prisma.query.user({ where: { phone } });
-    if (!iser) {
-      throw new Error("User not found");
+    if (!user) {
+      throw new Error('User not found');
     }
 
     return {
@@ -28,9 +28,9 @@ const UserMutations = {
         {
           id: user.id
         },
-        "secret",
+        'secret',
         {
-          algorithm: "HS256"
+          algorithm: 'HS256'
         }
       ),
       user
@@ -41,7 +41,7 @@ const UserMutations = {
     const where = { id: args.id };
     const user = await ctx.prisma.query.user({ where }, `{ id }`);
     if (!user) {
-      throw new Error("Invalid phone");
+      throw new Error('User not found');
     }
 
     return ctx.prisma.mutation.deleteUser({ where }, info);
@@ -50,9 +50,8 @@ const UserMutations = {
   async updateUser(parent, args, ctx, info) {
     const where = { id: args.id };
 
-    //if patient doesn't exit, throw error
     if (!user) {
-      throw new Error("Invalid phone");
+      throw new Error('User not found');
     }
 
     return ctx.db.mutation.updateUser(
@@ -63,8 +62,8 @@ const UserMutations = {
           lastName: args.lastName,
           rsvpStatus: args.rsvpStatus,
           phone: args.phone,
-          guestType: 'invitee',
-          note: args.note ? args.note : "",
+          guestType: args.guestType,
+          note: args.note ? args.note : '',
           allowedPlusOnes: args.allowedPlusOnes ? args.allowedPlusOnes : null
         }
       },
