@@ -12,34 +12,25 @@ type Query {
 }
 
 type Mutation {
-  signup(
+  createUser(
     firstName: String!
     lastName: String!
-    email: String!
     phone: String!
+    guestType: String!
     note: String
     rsvpStatus: Boolean!
-    addressLineOne: String!
-    addressLineTwo: String
-    country: String!
-    zipCode: String!
-    state: String!
-    city: String!
+    allowedPlusOnes: Number
   ): AuthPayload
   updateUser(
     firstName: String!
     lastName: String!
     phone: String!
+    guestType: String!
     note: String
     rsvpStatus: Boolean!
-    addressLineOne: String!
-    addressLineTwo: String
-    country: String!
-    zipCode: String!
-    state: String!
-    city: String!
+    allowedPlusOnes: Number
   ): AuthPayload
-  login(email: String!, phone: String!): AuthPayload
+  login(phone: String!): AuthPayload
   deleteUser(id: String!): User
 }
 

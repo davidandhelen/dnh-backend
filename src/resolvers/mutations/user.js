@@ -19,8 +19,8 @@ const UserMutations = {
     };
   },
 
-  async login(parent, { email, phone }, ctx, info) {
-    const user = await ctx.prisma.query.user({ where: { email } });
+  async login(parent, { phone }, ctx, info) {
+    const user = await ctx.prisma.query.user({ where: { phone } });
     if (!user) {
       throw new Error(`No such user found for email: ${email}`);
     }
@@ -69,15 +69,11 @@ const UserMutations = {
         data: {
           firstName: args.firstName,
           lastName: args.lastName,
-          phone,
-          note: args.note ? args.note : "",
           rsvpStatus: args.rsvpStatus,
-          addressLineOne: args.addressLineOne,
-          addressLineTwo: args.addressLineTwo ? args.addressLineTwo : "",
-          country: args.country,
-          zipCode: args.zipCode,
-          state: args.state,
-          city: args.city
+          phone,
+          guestType: 'invitee',
+          note: args.note ? args.note : "",
+          allowedPlusOnes: args.allowedPlusOnes ? args.allowedPlusOnes : null
         }
       },
       info

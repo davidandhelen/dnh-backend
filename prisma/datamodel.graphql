@@ -2,14 +2,9 @@ type User {
   id: ID! @id
   firstName: String!
   lastName: String!
-  email: String! @unique
+  rsvpStatus: Boolean! @default(value: false)
+  allowedPlusOnes: Number
+  guestType: String!
   phone: String! @unique
   note: String
-  rsvpStatus: Boolean
-  addressLineOne: String
-  addressLineTwo: String
-  country: String
-  zipCode: String
-  state: String
-  city: String
 }
