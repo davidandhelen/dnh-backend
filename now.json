@@ -6,5 +6,8 @@
     ],
     "routes": [
         { "src": "/(.*)", "dest": "src/index.js" }
-    ]
+    ],
+    "env": {
+        "PRISMA_ENDPOINT": "@prisma_endpoint"
+      }
 }
