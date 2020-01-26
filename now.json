@@ -1,10 +1,12 @@
 {
-    "version": 2,
-    "name": "dnh-backend",
-    "builds": [
-        { "src": "src/index.js", "use": "@now/node@canary" }
-    ],
-    "routes": [
-        { "src": "/(.*)", "dest": "src/index.js" }
-    ]
+  "version": 2,
+  "name": "dnh-backend",
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@now/node@canary",
+      "env": { "PRISMA_ENDPOINT": "@prisma_endpoint" }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "src/index.js" }]
 }
