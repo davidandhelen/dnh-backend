@@ -19,7 +19,7 @@ type Mutation {
     guestType: String!
     note: String
     rsvpStatus: Boolean!
-    allowedPlusOnes: Number
+    allowedPlusOnes: Int
   ): AuthPayload
   updateUser(
     firstName: String!
@@ -28,7 +28,7 @@ type Mutation {
     guestType: String!
     note: String
     rsvpStatus: Boolean!
-    allowedPlusOnes: Number
+    allowedPlusOnes: Int
   ): AuthPayload
   login(phone: String!): AuthPayload
   deleteUser(id: String!): User

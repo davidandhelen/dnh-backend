@@ -3,7 +3,7 @@ type User {
   firstName: String!
   lastName: String!
   rsvpStatus: Boolean! @default(value: false)
-  allowedPlusOnes: Number
+  allowedPlusOnes: Int @default(value: 0)
   guestType: String!
   phone: String! @unique
   note: String
