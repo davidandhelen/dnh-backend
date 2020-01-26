@@ -22,6 +22,7 @@ type Mutation {
     allowedPlusOnes: Int
   ): AuthPayload
   updateUser(
+    id: ID!
     firstName: String
     lastName: String
     phone: String
