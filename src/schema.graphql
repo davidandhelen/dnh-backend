@@ -22,14 +22,14 @@ type Mutation {
     allowedPlusOnes: Int
   ): AuthPayload
   updateUser(
-    firstName: String!
-    lastName: String!
-    phone: String!
-    guestType: String!
+    firstName: String
+    lastName: String
+    phone: String
+    guestType: String
     note: String
-    rsvpStatus: Boolean!
+    rsvpStatus: Boolean
     allowedPlusOnes: Int
-  ): AuthPayload
+  ): User
   login(phone: String!): AuthPayload
   deleteUser(id: String!): User
 }
