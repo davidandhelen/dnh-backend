@@ -49,7 +49,7 @@ const UserMutations = {
 
   async updateUser(parent, args, ctx, info) {
     const where = { id: args.id };
-
+    const user = await ctx.prisma.query.user({ where }, `{ id }`);
     if (!user) {
       throw new Error('User not found');
     }
@@ -58,13 +58,15 @@ const UserMutations = {
       {
         where,
         data: {
-          firstName: args.firstName,
-          lastName: args.lastName,
-          rsvpStatus: args.rsvpStatus,
-          phone: args.phone,
-          guestType: args.guestType,
-          note: args.note ? args.note : '',
-          allowedPlusOnes: args.allowedPlusOnes ? args.allowedPlusOnes : null
+          firstName: args.firstName ? args.firstName : user.firstName,
+          lastName: args.lastName ? args.lastName : user.lastName,
+          rsvpStatus: args.rsvpStatus ? args.rsvpStatus : user.rsvpStatus,
+          phone: args.phone ? args.phone : user.phone,
+          guestType: args.guestType ? args.guestType : user.guestType,
+          note: args.note ? args.note : user.note,
+          allowedPlusOnes: args.allowedPlusOnes
+            ? args.allowedPlusOnes
+            : user.allowedPlusOnes
         }
       },
       info
