@@ -33,6 +33,7 @@ type Mutation {
   ): User
   login(phone: String!): AuthPayload
   deleteUser(id: String!): User
+  createManyUsers(users: [UserCreateInput!]): [AuthPayload]
 }
 
 type AuthPayload {

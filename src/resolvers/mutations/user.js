@@ -74,6 +74,27 @@ const UserMutations = {
       },
       info
     );
+  },
+
+  async createManyUsers(parent, args, ctx, info) {
+    const payload = [];
+    for (let i = 0; i < args.users.length; i++) {
+      const user = await ctx.prisma.mutation.createUser({
+        data: { ...args.users[i] }
+      });
+      payload.push({
+        token: jwt.sign(
+          {
+            id: user.id
+          },
+          'secret'
+        ),
+        user
+      });
+    }
+
+    console.log(payload);
+    return payload;
   }
 };
 
