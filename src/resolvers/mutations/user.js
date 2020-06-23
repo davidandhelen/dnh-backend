@@ -63,7 +63,7 @@ const UserMutations = {
         data: {
           firstName: args.firstName ? args.firstName : user.firstName,
           lastName: args.lastName ? args.lastName : user.lastName,
-          rsvpStatus: args.rsvpStatus ? args.rsvpStatus : user.rsvpStatus,
+          rsvpStatus: args.rsvpStatus === true || args.rsvpStatus === false ? args.rsvpStatus : user.rsvpStatus,
           phone: args.phone ? args.phone : user.phone,
           guestType: args.guestType ? args.guestType : user.guestType,
           note: args.note ? args.note : user.note,
