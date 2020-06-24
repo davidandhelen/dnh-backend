@@ -4,6 +4,7 @@ type User {
   lastName: String!
   rsvpStatus: Boolean! @default(value: false)
   allowedPlusOnes: Int @default(value: 0)
+  plusOnes: [User!]
   guestType: String!
   phone: String! @unique
   note: String

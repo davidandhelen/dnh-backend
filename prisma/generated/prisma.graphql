@@ -51,6 +51,7 @@ type User {
   lastName: String!
   rsvpStatus: Boolean!
   allowedPlusOnes: Int
+  plusOnes(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   guestType: String!
   phone: String!
   note: String
@@ -68,9 +69,15 @@ input UserCreateInput {
   lastName: String!
   rsvpStatus: Boolean
   allowedPlusOnes: Int
+  plusOnes: UserCreateManyInput
   guestType: String!
   phone: String!
   note: String
+}
+
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
 }
 
 type UserEdge {
@@ -108,6 +115,106 @@ type UserPreviousValues {
   note: String
 }
 
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  rsvpStatus: Boolean
+  rsvpStatus_not: Boolean
+  allowedPlusOnes: Int
+  allowedPlusOnes_not: Int
+  allowedPlusOnes_in: [Int!]
+  allowedPlusOnes_not_in: [Int!]
+  allowedPlusOnes_lt: Int
+  allowedPlusOnes_lte: Int
+  allowedPlusOnes_gt: Int
+  allowedPlusOnes_gte: Int
+  guestType: String
+  guestType_not: String
+  guestType_in: [String!]
+  guestType_not_in: [String!]
+  guestType_lt: String
+  guestType_lte: String
+  guestType_gt: String
+  guestType_gte: String
+  guestType_contains: String
+  guestType_not_contains: String
+  guestType_starts_with: String
+  guestType_not_starts_with: String
+  guestType_ends_with: String
+  guestType_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  note: String
+  note_not: String
+  note_in: [String!]
+  note_not_in: [String!]
+  note_lt: String
+  note_lte: String
+  note_gt: String
+  note_gte: String
+  note_contains: String
+  note_not_contains: String
+  note_starts_with: String
+  note_not_starts_with: String
+  note_ends_with: String
+  note_not_ends_with: String
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
 type UserSubscriptionPayload {
   mutation: MutationType!
   node: User
@@ -126,7 +233,29 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  firstName: String
+  lastName: String
+  rsvpStatus: Boolean
+  allowedPlusOnes: Int
+  plusOnes: UserUpdateManyInput
+  guestType: String
+  phone: String
+  note: String
+}
+
 input UserUpdateInput {
+  firstName: String
+  lastName: String
+  rsvpStatus: Boolean
+  allowedPlusOnes: Int
+  plusOnes: UserUpdateManyInput
+  guestType: String
+  phone: String
+  note: String
+}
+
+input UserUpdateManyDataInput {
   firstName: String
   lastName: String
   rsvpStatus: Boolean
@@ -134,6 +263,18 @@ input UserUpdateInput {
   guestType: String
   phone: String
   note: String
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
 }
 
 input UserUpdateManyMutationInput {
@@ -144,6 +285,22 @@ input UserUpdateManyMutationInput {
   guestType: String
   phone: String
   note: String
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -199,6 +356,9 @@ input UserWhereInput {
   allowedPlusOnes_lte: Int
   allowedPlusOnes_gt: Int
   allowedPlusOnes_gte: Int
+  plusOnes_every: UserWhereInput
+  plusOnes_some: UserWhereInput
+  plusOnes_none: UserWhereInput
   guestType: String
   guestType_not: String
   guestType_in: [String!]
